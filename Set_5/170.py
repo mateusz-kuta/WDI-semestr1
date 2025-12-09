@@ -1,16 +1,20 @@
 
 
-def advanced_number(n):
+def is_prime(n):
     if n < 2:
         return False
-    for i in range(2, n):
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n ** 0.5) + 1, 2):
         if n % i == 0:
-            return True
-    return False
+            return False
+    return True
 
 
 def is_valid(bin_format):
-    if bin_format[-1] == '1' and advanced_number(int(bin_format, 2)):
+    if bin_format[0] == '1' and not is_prime(int(bin_format, 2)):
         return True
     return False
 
@@ -18,7 +22,7 @@ def is_valid(bin_format):
 def possible_numbers(a, b, result=''):
     global counter
     if a == b == 0:
-        # print(result, int(result, 2))
+        print(result, int(result, 2))
         if is_valid(result):
             counter += 1
         return counter
@@ -29,5 +33,5 @@ def possible_numbers(a, b, result=''):
 
 if __name__ == '__main__':
     counter = 0
-    possible_numbers(5, 5)
+    possible_numbers(2, 3)
     print(counter)
